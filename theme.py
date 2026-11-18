@@ -6,33 +6,42 @@ class ThemeManager:
     THEMES = {
         "1": {
             "name": "Classic Amber CRT",
-            "primary": "\033[38;5;214m",   # Amber / Orange
-            "secondary": "\033[38;5;220m", # Yellow-amber
-            "accent": "\033[1;37m",        # Bold white
-            "muted": "\033[38;5;244m",     # Dim grey
-            "error": "\033[1;31m",         # Red
-            "success": "\033[1;32m",       # Green
-            "reset": "\033[0m"
+            "primary": "\033[1;38;5;208m",   # Vivid sunset orange
+            "secondary": "\033[38;5;221m",   # Warm golden yellow
+            "accent": "\033[1;38;5;231m",    # Bold bright white
+            "muted": "\033[38;5;137m",       # Soft bronze grey
+            "error": "\033[1;38;5;203m",     # Coral red
+            "success": "\033[1;38;5;114m",   # Soft mint green
+            "reset": "\033[0m",
+            # Banner gradient (top -> bottom): red -> orange -> yellow
+            "gradient": [196, 202, 208, 214, 220, 226],
+            "tagline": "\033[1;38;5;230m",
         },
         "2": {
             "name": "Retro Green Terminal",
-            "primary": "\033[38;5;46m",    # Bright green
-            "secondary": "\033[38;5;120m", # Light green
-            "accent": "\033[1;37m",        # Bold white
-            "muted": "\033[38;5;240m",     # Dark grey
-            "error": "\033[1;31m",         # Red
-            "success": "\033[1;32m",       # Green
-            "reset": "\033[0m"
+            "primary": "\033[1;38;5;47m",     # Neon green
+            "secondary": "\033[38;5;157m",   # Pale mint
+            "accent": "\033[1;38;5;231m",    # Bold bright white
+            "muted": "\033[38;5;65m",        # Moss grey-green
+            "error": "\033[1;38;5;210m",     # Soft salmon red
+            "success": "\033[1;38;5;118m",   # Lime green
+            "reset": "\033[0m",
+            # Banner gradient: deep green -> lime
+            "gradient": [28, 34, 40, 46, 82, 118],
+            "tagline": "\033[1;38;5;157m",
         },
         "3": {
             "name": "Cyber Blue Matrix",
-            "primary": "\033[38;5;45m",    # Cyan / Neon blue
-            "secondary": "\033[38;5;111m", # Sky blue
-            "accent": "\033[1;37m",        # Bold white
-            "muted": "\033[38;5;243m",     # Grey
-            "error": "\033[1;31m",         # Red
-            "success": "\033[1;32m",       # Green
-            "reset": "\033[0m"
+            "primary": "\033[1;38;5;51m",     # Electric cyan
+            "secondary": "\033[38;5;147m",   # Soft periwinkle
+            "accent": "\033[1;38;5;231m",    # Bold bright white
+            "muted": "\033[38;5;103m",       # Slate lavender grey
+            "error": "\033[1;38;5;204m",     # Neon pink-red
+            "success": "\033[1;38;5;86m",    # Aqua green
+            "reset": "\033[0m",
+            # Banner gradient: violet -> blue -> cyan
+            "gradient": [93, 63, 33, 39, 45, 51],
+            "tagline": "\033[1;38;5;159m",
         }
     }
 
@@ -56,14 +65,16 @@ class ThemeManager:
     @classmethod
     def banner(cls):
         t = cls.get()
-        print(f"{t['primary']}")
-        print(r"""
-  ██████╗ ███████╗██████╗  ██████╗ ████████╗███████╗██████╗ ███╗   ███╗
- ██╔════╝ ██╔════╝██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝██╔══██╗████╗ ████║
- ██║  ███╗█████╗  ██████╔╝██║   ██║   ██║   █████╗  ██████╔╝██╔████╔██║
- ██║   ██║██╔══╝  ██╔══██╗██║   ██║   ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║
- ╚██████╔╝███████╗██║  ██║╚██████╔╝   ██║   ███████╗██║  ██║██║ ╚═╝ ██║
-  ╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝
-        >>> LABORATORY EQUIPMENT BORROWING MANAGEMENT SYSTEM <<<
-        """)
-        print(f"{t['reset']}")
+        art = [
+            r"  ██████╗ ███████╗██████╗  ██████╗ ████████╗███████╗██████╗ ███╗   ███╗",
+            r" ██╔════╝ ██╔════╝██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝██╔══██╗████╗ ████║",
+            r" ██║  ███╗█████╗  ██████╔╝██║   ██║   ██║   █████╗  ██████╔╝██╔████╔██║",
+            r" ██║   ██║██╔══╝  ██╔══██╗██║   ██║   ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║",
+            r" ╚██████╔╝███████╗██║  ██║╚██████╔╝   ██║   ███████╗██║  ██║██║ ╚═╝ ██║",
+            r"  ╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝",
+        ]
+        print()
+        for line, code in zip(art, t["gradient"]):
+            print(f"\033[1;38;5;{code}m{line}{t['reset']}")
+        print(f"{t['tagline']}        >>> LABORATORY EQUIPMENT BORROWING MANAGEMENT SYSTEM <<<{t['reset']}")
+        print()
