@@ -1,0 +1,11 @@
+lab_borrowing_system/
+│
+├── schema.sql              # MySQL schema with sample data
+├── requirements.txt        # Dependencies
+├── README.md               # Setup instructions and documentation
+├── config.py               # Database credentials & settings
+├── database.py             # Database connection & query helper
+├── auth.py                 # Password hashing & authentication logic
+├── theme.py                # ANSI color codes, borders, and themes
+├── models.py               # OOP Entities (User, Equipment, Borrower, Loan)
+└── main.py                 # Main CLI navigation, menus, and reports
